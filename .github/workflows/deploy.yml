@@ -7,6 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Set up Maven with settings.xml
+        run: echo "${{ secrets.SETTINGS_XML }}" | base64 --decode > $HOME/.m2/settings.xml
+
       - name: Set up Maven Central Repository
         uses: actions/setup-java@v4
         with:
