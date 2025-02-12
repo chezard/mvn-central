@@ -27,6 +27,7 @@ jobs:
           mkdir -p ~/.gnupg
           chmod 700 ~/.gnupg  # Correct permissions for the directory
           echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import
+          cat ~/.gnupg/gpg.conf
           echo "allow-loopback-pinentry" >> ~/.gnupg/gpg.conf
 
       # Set the GPG passphrase
