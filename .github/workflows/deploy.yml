@@ -29,8 +29,9 @@
 
 name: Publish package to the Maven Central Repository
 on:
-  release:
-    types: [created]
+    push:
+        branches:
+        - master
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -41,14 +42,13 @@ jobs:
         with:
           java-version: '23'
           distribution: 'corretto'
-          server-id: central
+          server-id: ossrh
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
-          gpg-passphrase: 8EPe3WJxW/iV7fGf8WD/8+2D9TSouIPCAl2bwEreaMCY
-          gpg-private-key: passphrase
       - name: Publish package
         run: mvn --batch-mode deploy
         env:
           MAVEN_USERNAME: ${{ secrets.CENTRAL_TOKEN_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.CENTRAL_TOKEN_PASSWORD }}
+
 
