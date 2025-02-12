@@ -44,6 +44,8 @@ jobs:
           server-id: central
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
+          gpg-passphrase: passphrase
+          gpg-private-key: 8EPe3WJxW/iV7fGf8WD/8+2D9TSouIPCAl2bwEreaMCY
       - name: Publish package
         run: mvn --batch-mode deploy
         env:
